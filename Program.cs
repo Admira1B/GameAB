@@ -12,6 +12,7 @@ namespace gameGTN
             int num = -1; // введенное число
             int pow1 = 50; // правый ограничитель кол-ва чисел
             int pop = 0; // кол-во попыток
+            int usesecif = 0;
             bool select = true; 
 
             while (select)
@@ -29,16 +30,19 @@ namespace gameGTN
                             Console.WriteLine("Вы выбрали легкий уровень игры. Вы должны угадать число от 0 до {0}.", pow1);
                             select = false;
                             break;
-                        case 2: //Средний от 0 до 50 за 15 попыток.
-                            Console.WriteLine("Вы выбрали cредний уровень игры. Вы должны угадать число от 0 до {0}. Вам дано 15 попыток.", pow1);
-                            pop = 15;
-                            select = false;
-                            break;
-                        case 3: //Сложный от 0 до 100 за 10 попыток.
+                        case 2: //Средний от 0 до 100 за 10 попыток.
                             pow1 = 100;
                             pop = 10;
-                            Console.WriteLine("Вы выбрали сложный уровень игры. Вы должны угадать число от 0 до {0}. Вам дано 10 попыток.", pow1);
+                            Console.WriteLine("Вы выбрали cредний уровень игры. Вы должны угадать число от 0 до {0}. Вам дано {1} попыток.", pow1, pop);
                             select = false;
+                            usesecif = 1;
+                            break;
+                        case 3: //Сложный от 0 до 100 за 5 попыток.
+                            pow1 = 100;
+                            pop = 5;
+                            Console.WriteLine("Вы выбрали сложный уровень игры. Вы должны угадать число от 0 до {0}. Вам дано {1} попыток.", pow1, pop);
+                            select = false;
+                            usesecif = 1;
                             break;
                         default:
                             Console.WriteLine("Вы не выбрали ни один из уровней сложности!");
@@ -76,24 +80,24 @@ namespace gameGTN
                     }
                 }
 
+                pop1--;
+
+                if (k != pop && val != num && usesecif == 1)
+                {
+                    Console.WriteLine("Попыток осталось: {0}", pop1);
+                }
+
+                else if (k == pop)
+                {
+                    Console.WriteLine("У вас осталось 0 попыток. Вы проиграли.");
+                    Console.WriteLine("Загаданное число: {0}", val);
+                    Console.WriteLine("Нажмите любую клавишу, чтоб закрыть прогрмму.");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
+                
                 k++;
 
-                if (powerr == 2 || powerr == 3)
-                    pop1--;
-
-                    if (k != pop && val == num)
-                    {
-                        Console.WriteLine("Попыток осталось: {0}", pop1);
-                    }
-
-                    else if (k == pop)
-                    {
-                        Console.WriteLine("У вас осталось 0 попыток. Вы проиграли.");
-                        Console.WriteLine("Загаданное число: {0}", val);
-                        Console.WriteLine("Нажмите любую клавишу, чтоб закрыть прогрмму.");
-                        Console.ReadKey();
-                        Environment.Exit(0);
-                    }
             }
         }
     }
