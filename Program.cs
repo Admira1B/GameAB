@@ -87,7 +87,7 @@ namespace gameGTN
                     Console.WriteLine("Попыток осталось: {0}", pop1);
                 }
 
-                else if (k == pop)
+                else if (k == pop && val != num)
                 {
                     Console.WriteLine("У вас осталось 0 попыток. Вы проиграли.");
                     Console.WriteLine("Загаданное число: {0}", val);
